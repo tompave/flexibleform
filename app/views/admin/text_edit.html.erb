@@ -1,0 +1,33 @@
+<% provide(:title, "FlexibleForm - Settings") %>
+<h2>Modifica i testi della pagina: <%= @page_name_in_heading %></h2>
+
+<%= link_to "back", :back, class: "btn" %>
+<hr>
+
+<div>
+	<%= form_for @texts, url: { action: 'update_texts' } do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
+
+		<%= f.hidden_field :page %>
+
+		<%= f.label :title, 'Titolo nell\'header rosso' %>
+		<%= f.text_field :title %>
+
+		<%= f.label :heading, 'Heading della pagina' %>
+		<%= f.text_field :heading %>
+
+		<%= f.label :body, 'Testo in alto' %>
+		<%= f.text_area :body, rows: 8 %>
+
+		<%= f.label :body, 'Testo in basso' %>
+		<%= f.text_area :body2, rows: 8 %>
+
+		<% if @texts.eula_text %>
+			<%= f.label :eula_text, 'Testo della checkbox eula/privacy' %>
+			<%= f.text_area :eula_text, rows: 2 %>
+		<% end %>
+
+		<%= f.submit 'Salva', class: 'btn btn-primary btn_tom' %>
+	<% end %>
+
+</div>

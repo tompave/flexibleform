@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style type="text/css">
+      body {
+          font-family: Verdana, Arial, sans-serif;
+          font-size: 12;
+          padding: 10px;
+      }
+      em {
+        font-style: italic;
+      }
+      strong {
+        font-weight: bold;
+      }
+      a {
+        color: #8E0016;
+      }
+      h3 {
+        font-size: 14;
+        color: #444;
+      }
+      p {
+        color: #555;
+      }
+
+      <%= @style %>
+
+    </style>
+  </head>
+
+  <body>
+    <%= @body.to_str.html_safe %>
+  </body>
+</html>

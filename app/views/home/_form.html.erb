@@ -1,0 +1,44 @@
+<div class="form-container">
+	<%= form_for @submission, url: { controller: 'home', action: 'create_submission' } do |f| %>
+
+		<%= render 'shared/error_messages', object: f.object %>
+
+		<%= f.hidden_field :visit_id %>
+		
+		<%= f.label :email, 'Indirizzo e-mail:' %>
+		<%= f.text_field :email %>
+
+		<%= f.label :name, 'Nome (facoltativo):' %>
+		<%= f.text_field :name %>
+		<br>
+
+		<%= label_tag 'Posizione:' %>
+		<div class="radio-group">
+			<%= f.label :location_village, class: 'radio', id: "radio_1" do %>
+				<%= f.radio_button :location, 'village', class: 'radio input-inline' %>
+				Village
+			<% end %>
+			<%= f.label :location_milano, class: 'radio', id: "radio_2" do %>
+				<%= f.radio_button :location, 'milano', class: 'radio input-inline' %>
+				Milano
+			<% end %>
+			<%= f.label :location_ivrea, class: 'radio', id: "radio_3" do %>
+				<%= f.radio_button :location, 'ivrea', class: 'radio input-inline' %>
+				Ivrea
+			<% end %>
+		</div>
+
+		<div id='tos'>
+			<%= check_box_tag :eula, true, false, class: 'checkbox input-inline' %>
+			<%= label_tag :eula, "#{@eula_text}".html_safe, class: 'label-inline' %>
+		</div>
+
+		
+		<div id="recaptcha-div">
+			<%= recaptcha_tag(:challenge, :language => :it).html_safe %>
+		</div>
+
+		<%= f.submit 'Iscriviti', class: 'btn btn-primary btn_tom' %>
+	<% end %>
+
+</div>

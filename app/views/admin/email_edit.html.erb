@@ -1,0 +1,31 @@
+<% provide(:title, @title) %>
+<h2>Modifica i testi</h2>
+
+<%= link_to "back", :back, class: "btn" %>
+<hr>
+
+<div>
+	<%= form_for @template, url: { action: 'update_email' } do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
+
+		<%= f.label :subject, 'email object' %>
+		<%= f.text_field :subject %>
+
+		<%= f.label :body, 'Email body' %>
+		<%= f.text_area :body, rows: 8 %>
+		<div>
+			Within the body you can use these tags:
+			<ul>
+				<li><code>[name]</code>: This will be replaced by the name of the recipient, id they have provided it. Otherwise it will be used the fallback string: "<%= UserConfig::FALLBACK_USERNAME %>".</li>
+				<li><code>[email]</code>: the email address the mail will be sent to.</li>
+			</ul>
+		</div><br>
+
+		<%= f.label :style, 'CSS (Optional. The mail template already has a default style)' %>
+		<%= f.text_area :style, rows: 8 %>
+
+
+		<%= f.submit 'Save', class: 'btn btn-primary btn_tom' %>
+	<% end %>
+
+</div>

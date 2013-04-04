@@ -1,0 +1,22 @@
+<tr>
+	<td>
+		<%= v.id %> 
+		<%= link_to "elimina", { controller: "admin", action: "destroy_visit", visit_id: v.id, order: @order }, method: :delete %>
+	</td>
+	<td><%= v.operative_system %></td>
+	<!-- <td><%#= v.os_version %></td> -->
+	<td><%= v.ip_address %></td>
+	<!-- <td><%#= v.user_agent %></td> -->
+	<td><%= v.created_at %></td>
+	<% if s = v.submission %>
+		<td><%= s.email %></td>
+		<td><%= s.name %></td>
+		<td><%= s.location %></td>
+		<!-- <td><%#= s.token %></td>
+		<%# if s.feedback  %>
+			<td><%#= s.feedback.created_at %></td>
+			<td><%#= s.feedback.humanized_delta %></td>
+		<%# end %> -->
+	<% end %>
+	
+</tr>

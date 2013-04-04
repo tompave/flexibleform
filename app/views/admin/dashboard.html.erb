@@ -1,0 +1,57 @@
+<% provide(:title, "#{UserConfig::APP_TITLE} Dashboard") %>
+
+
+<div class="dashboard_block">
+	<span>Visite: <%= @visits.count %></span> - 
+	<span>Iscrizioni: <%= @submission_count %></span>
+</div>
+<br>
+
+<div class="dashboard_block">
+	<span class="dashboard_block_label">Esporta le iscrizioni:</span>
+	<%= link_to "scarica come CSV", download_export_path(format: :csv), class: "btn btn-primary btn-small button-spaced" %>
+	<%= link_to "scarica come XLS", download_export_path(format: :xls), class: "btn btn-primary btn-small button-spaced" %>
+	<%#= link_to "scarica come CSV", "#", class: "btn btn-primary btn-small button-spaced", onclick: "alert('Work in progress')" %>
+	<%#= link_to "scarica come XLS", "#", class: "btn btn-primary btn-small button-spaced", onclick: "alert('Work in progress')" %>
+</div>
+<br>
+
+<div class="dashboard_block">
+	<span class="dashboard_block_label">Modifica i testi:</span>
+	<%= link_to page_name("home"), text_edit_path(page: "home"), class: "btn btn-danger btn-small button-spaced" %>
+	<%= link_to page_name("end"), text_edit_path(page: "end"), class: "btn btn-danger btn-small button-spaced" %>
+	<%#= link_to page_name("land"), text_edit_path(page: "land"), class: "btn btn-danger btn-small button-spaced" %>
+	<%#= link_to page_name("fb_error"), text_edit_path(page: "fb_error"), class: "btn btn-danger btn-small button-spaced" %>
+	<%= link_to "Template eMail", email_edit_path, class: "btn btn-danger btn-small button-spaced" %>
+</div>
+<br>
+
+
+
+
+<hr>
+
+<div class="container">
+	<table id="visit-table">
+		<tr>
+			<th>ID visita</th>
+			<th>OS <%= caret_tag :os %></th>
+			<!-- <th>Versione OS</th> -->
+			<th>Indirizzo IP</th>
+			<!-- <th>User Agent</th> -->
+			<th>Data <%= caret_tag :date %></th>
+			<th>email <%= caret_tag :email %></th>
+			<th>nome</th>
+			<th>posizione <%= caret_tag :location %></th>
+			<!-- <th>token</th>
+			<th>feedback <%#= caret_tag :feedback %></th>
+			<th>&Delta;-t (iscrizione-feedback) <%#= caret_tag :delta %></th> -->
+		</tr>
+		<% @visits.each do |v| %>
+			<%= render 'visit_row', v: v %>
+		<% end %>
+	</table>
+</div>
+
+
+
